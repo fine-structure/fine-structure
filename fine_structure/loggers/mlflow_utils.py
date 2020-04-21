@@ -7,7 +7,6 @@ import tempfile
 import mlflow
 import pandas as pd
 
-from dstools.utils.serialize import to_yaml
 
 TEMP_DIR = os.path.join(os.path.expanduser("~"), 'tmp')
 
@@ -108,6 +107,12 @@ class MlflowLogger():
             mlflow.set_tag('mlflow.note.content', comment)
         if tags:
             mlflow.set_tags(tags)
+
+
+def to_yaml(obj, path):
+
+    with open(path, 'w') as file:
+        yaml.dump(obj, file)
 
 
 def flatten(d, parent_key='', sep='.'):
